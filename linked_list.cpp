@@ -245,6 +245,21 @@ Node *reverseNonRecursive(Node *&head)
     return prev;
 }
 
+int findMid(Node *&head)
+{
+    if (head == NULL)
+        return -1;
+    Node *slow = head;
+    Node *fast = head;
+
+    while (fast != NULL && fast->Next != NULL)
+    {
+        slow = slow->Next;
+        fast = fast->Next->Next;
+    }
+    return slow->value;
+}
+
 void display(Node *n)
 {
     while (n != NULL)
@@ -275,6 +290,7 @@ int main()
          << "Choice 9: Deletion at a specific position" << endl
          << "Choice 10: Deletion by value (From Unique List)" << endl
          << "Choice 11: Reversal Non Recursive" << endl
+         << "Choice 12: Finding Mid (slow fast pointer method" << endl
          << "Choice 0: Exit" << endl;
 
     cout << "Next Choice: ";
@@ -375,8 +391,18 @@ int main()
             break;
 
         case 11:
-
             head = reverseNonRecursive(head);
+            break;
+
+        case 12:
+
+            int mid;
+            mid = findMid(head);
+            if (mid == -1)
+                cout << "Linked List is empty" << endl;
+            else
+                cout << "Mid is: " << mid << endl;
+            break;
 
         default:
             break;
